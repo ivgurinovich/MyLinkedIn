@@ -7,5 +7,9 @@ jobportal/.env
 *.env
 venv/
 env/
+.idea/
+.idea
 ../.idea/
+../../.idea
+.idea/
 .vscode/

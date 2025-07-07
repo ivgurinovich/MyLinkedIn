@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}{{ resume.title }}{% endblock %}
+
+{% block content %}
+<h2>{{ resume.title }}</h2>
+<p><strong>Experience:</strong> {{ resume.experience }}</p>
+<p><strong>Education:</strong> {{ resume.education }}</p>
+<p><strong>Skills:</strong> {{ resume.skills }}</p>
+<a href="{% url 'resumes:resume_edit' resume.pk %}">Edit</a>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}My Resume{% endblock %}
+
+{% block content %}
+<h2>My Resume</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save Resume</button>
+</form>
+
+{% if resume %}
+<form method="post" action="{% url 'resumes:delete_resume' resume.pk %}">
+
+    {% csrf_token %}
+    <button type="submit" style="margin-top: 10px;">Delete Resume</button>
+</form>
+{% endif %}
+{% endblock %}

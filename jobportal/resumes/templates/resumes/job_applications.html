@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Applications for {{ job.title }}{% endblock %}
+
+{% block content %}
+<h2>Applications for: {{ job.title }}</h2>
+
+<ul>
+    {% for app in applications %}
+    <li>
+        <strong>{{ app.applicant.username }}</strong><br>
+        <p>{{ app.cover_letter|linebreaks }}</p>
+        <small>Submitted at: {{ app.submitted_at }}</small>
+    </li>
+    {% empty %}
+    <li>No applications yet.</li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'jobs:company_jobs' %}">← Back to My Jobs</a>
+{% endblock %}

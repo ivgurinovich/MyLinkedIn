@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>My Resumes</h2>
+
+<p><a href="{% url 'resumes:resume_create' %}">+ Add Resume</a></p>
+
+<ul>
+    {% for resume in resumes %}
+    <li>
+        <a href="{% url 'resumes:resume_detail' resume.pk %}">
+            {{ resume.title }}
+        </a> —
+        {{ resume.user.username }}
+        <a href="{% url 'resumes:resume_edit' resume.pk %}">Edit</a>
+        <a href="{% url 'resumes:delete_resume' resume.pk %}">Delete</a>
+    </li>
+    {% empty %}
+    <li>No resumes yet.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

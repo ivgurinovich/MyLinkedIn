@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}All Jobs{% endblock %}
+
+{% block content %}
+<h2>Available Jobs</h2>
+<p>Total jobs: {{ jobs|length }}</p>
+<ul>
+    {% for job in jobs %}
+    <li>
+        <a href="{% url 'jobs:job_detail' job.pk %}">
+            <strong>{{ job.title }}</strong>
+        </a><br>
+        {{ job.location }} | ${{ job.salary }}<br>
+        {{ job.description|truncatewords:20 }}
+    </li>
+    {% empty %}
+    <li>No jobs found.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

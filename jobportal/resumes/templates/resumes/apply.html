@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Apply to {{ job.title }}{% endblock %}
+
+{% block content %}
+<h2>Apply to {{ job.title }}</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit Application</button>
+</form>
+
+<p><a href="{% url 'jobs:job_detail' job.id %}">← Back to job</a></p>
+{% endblock %}

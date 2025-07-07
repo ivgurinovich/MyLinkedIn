@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Job Portal{% endblock %}</title>
+</head>
+<body>
+
+<p>
+    <a href="{% url 'accounts:home' %}">Home</a>
+    <a href="{% url 'jobs:job_list' %}">Jobs</a>
+
+    {% if user.is_authenticated %}
+        {% if user.role == 'company' %}
+            <a href="{% url 'jobs:company_jobs' %}">My Jobs</a>
+            <a href="{% url 'jobs:create_job' %}">Add Job</a>
+        {% elif user.role == 'applicant' %}
+            <a href="{% url 'resumes:resume_list' %}">My Resume</a>
+        {% endif %}
+        <a href="{% url 'accounts:logout' %}">Logout</a>
+    {% else %}
+        <a href="{% url 'accounts:login' %}">Login</a>
+        <a href="{% url 'accounts:signup' %}">Sign Up</a>
+    {% endif %}
+</p>
+
+{% if user.is_authenticated %}
+    <p>Logged in as: <strong>{{ user.username }}</strong> ({{ user.role }})</p>
+{% endif %}
+
+<hr>
+
+{% block content %}{% endblock %}
+
+</body>
+</html>
